@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        canvas{background-color: aqua;}
+    </style>
+</head>
+<body>
+    <div class="slidecontainer"> <p>choose ALL please</p>
+        <p id = "massP">Mass of the planet: 1.05</p>
+        <input type="range" min="1000" max="4000" value="2500" class="slider" id="starMass">
+        
+        <br>
+        <p id = "radiusP">Radius of the planet: 10.5</p>
+        <input type="range" min="1" max="20" value="10.5" class="slider" id="starRadius">
+        <p>color of the planet</p>
+        <input id="starColor" type="color" />
+      </div>
+      <p>choose direction</p>
+
+      <div style = "margin:10px">
+        <button onclick = handle()>add</button>
+      </div>
+      <canvas id = "dirCanvas">
+
+      </canvas>
+      
+</body>
+<script>
+
+    let canvas = document.getElementById("dirCanvas")
+    let center = [canvas.width/2,canvas.height/2]
+    let dir = [0,0]
+    let ctx = canvas.getContext("2d")
+    ctx.fillStyle = "red"
+    ctx.arc(center[0],center[1],5,0,Math.PI*2)
+    ctx.fill()
+
+    canvasRect = canvas.getBoundingClientRect()
+
+    canvas.addEventListener("click",e=>{
+
+    let eX = e.x-canvasRect.left
+    let eY = e.y - canvasRect.top
+        dir[0] = eX-center[0]
+        dir[1] = eY-center[1]
+        console.log(dir[1])
+        localStorage.setItem("dirX",dir[0])
+        localStorage.setItem("dirY",dir[1])
+    })
+    let radiusP = document.getElementById("radiusP")
+    let massP = document.getElementById("massP")
+    console.log(massP)
+    function handle(){
+        window.close()
+        localStorage.setItem("buildNewStar",true)
+
+    }
+    let starMassSlider = document.getElementById("starMass")
+    let starRadiusSlider = document.getElementById("starRadius")
+    let starColorChooser = document.getElementById("starColor")
+
+
+    localStorage.setItem("newStarMass",starMassSlider.value/1000)
+    localStorage.setItem("newStarRadius",starRadius.value)
+    localStorage.setItem("newStarColor",starColorChooser.value)
+
+
+    starMassSlider.oninput = function(){
+        console.log("work")
+        starMass = starMassSlider.value/1000
+        localStorage.setItem("newStarMass",starMass)
+        massP.textContent = "Mass of the star: " + starMass
+        
+    }
+
+    starRadiusSlider.oninput = function(){
+        starRadius = starRadiusSlider.value
+        localStorage.setItem("newStarRadius",starRadius)
+        radiusP.textContent = "Radius of the star: " + starRadius
+    }
+
+    starColorChooser.addEventListener("change",()=>{
+        localStorage.setItem("newStarColor",starColorChooser.value)
+        
+    })
+</script>
+</html>

@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div class="slidecontainer">
+        <p id = "massP">Mass of the star: 300000</p>
+        <input type="range" min="100000" max="500000" value="300000" class="slider" id="starMass">
+        
+        <br>
+        <p id = "radiusP">Radius of the star: 2</p>
+        <input type="range" min="1" max="5" value="2" class="slider" id="starRadius">
+        <p>color of the star</p>
+        <input id="starColor" type="color" />
+      </div>
+      <div style = "margin:10px">
+        <button onclick = handle()>add</button>
+      </div>
+      
+</body>
+<script>
+
+    let radiusP = document.getElementById("radiusP")
+    let massP = document.getElementById("massP")
+    function handle(){
+        window.close()
+        localStorage.setItem("buildNewStar",true)
+    }
+    let starMassSlider = document.getElementById("starMass")
+    let starRadiusSlider = document.getElementById("starRadius")
+    let starColorChooser = document.getElementById("starColor")
+
+
+    localStorage.setItem("newStarMass",starMassSlider.value)
+    localStorage.setItem("newStarRadius",starRadius.value)
+    localStorage.setItem("newStarColor",starColorChooser.value)
+
+
+    starMassSlider.oninput = function(){
+        console.log("work")
+        starMass = starMassSlider.value
+        localStorage.setItem("newStarMass",starMass)
+        massP.textContent = "Mass of the star: " + starMass
+        
+    }
+
+    starRadiusSlider.oninput = function(){
+        starRadius = starRadiusSlider.value
+        localStorage.setItem("newStarRadius",starRadius)
+        radiusP.textContent = "Radius of the star: " + starRadius
+    }
+
+    starColorChooser.addEventListener("change",()=>{
+        localStorage.setItem("newStarColor",starColorChooser.value)
+        
+    })
+</script>
+</html>

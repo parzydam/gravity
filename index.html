@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<style>
+    #cosmConstant{width: 300px;}
+    #massP{color:white}
+    header{position: fixed;}
+</style>
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <header>
+    <input type = button value = "add a star" onClick=window.open("./addStar.html","rating","width=400,height=600,left=150,top=200")>
+    <input type = button value = "add a planet" onClick=window.open("./addPlanet.html","rating","width=400,height=600,left=150,top=200")>
+    <div class="slidecontainer">
+        <p id = "massP">Cosmological constant :</p>
+        <input type="range" min="200000" max="400000" value="300000" class="slider" id="cosmConstant">
+
+    </header>
+    <canvas id ="canvas"></canvas>
+</body>
+<script src = "./main.js"></script>
+</html>
