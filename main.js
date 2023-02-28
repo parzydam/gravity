@@ -3,12 +3,9 @@
 
 let canvas = document.getElementById("canvas")
 let ctx = canvas.getContext("2d")
-canvas.style.background = "black"
-canvas.height = 3000
-canvas.width = 3000
+canvas.style.background = "black", canvas.height = 3000, canvas.width = 3000
 let canvasRect = canvas.getBoundingClientRect()
 
-console.log(document.body.style)
 
 localStorage.setItem("buildNewStar",0)
 localStorage.setItem("newStarMass",0)
@@ -226,7 +223,6 @@ let venus = new Planet(new Vector(400,1000),new Vector(-0.6,-1.5),2,16,1.4,"purp
 let moon = new Planet(new Vector(600,1200),new Vector(1,-1.5),1.43,12,2.3,"green")
 let pluto = new Planet(new Vector(1600,-200),new Vector(-0.6,1.5),2,16,10,"brown")
 
-
 planets.push(star,earth,mercury,venus,uranus,moon,pluto)
 var newPlanetIndex = planets.length
 
@@ -293,8 +289,6 @@ function run(){
         collideAndBurst()
     }
 
-    let nanPlanets = planets.filter(X=>isNaN(parseFloat(X.acc.x)))
-    console.log(nanPlanets)
 }
 
 function detectMouse(e){
@@ -334,10 +328,3 @@ constantSlider.oninput = function(){
 var interval = setInterval(run,10)
 
 run()
-let zero = new Vector(0,0)
-
-let zero2 = new Vector(0,0)
-
-zero.add(zero2)
-zero.scale(0)
-console.log(zero)
